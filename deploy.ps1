@@ -43,4 +43,5 @@ $commitMsg = "Update blog: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
 git commit -m $commitMsg
 git push origin main
 
-Write-Host "部署完成！访问：https://moxuan-plus.github.io" -ForegroundColor Green
+Write-Host "部署完成！正在打开浏览器..." -ForegroundColor Green
+Start-Process "https://moxuan-plus.github.io"
