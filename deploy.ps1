@@ -1,6 +1,8 @@
 # ------------- 配置区 -------------
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8
-chcp 65001 > $null  # 设置控制台代码页为 UTF-8
+chcp 65001 > $null
+
 
 # GitHub 仓库地址
 $repoUrl = "https://github.com/moxuan-plus/moxuan-plus.github.io.git"
