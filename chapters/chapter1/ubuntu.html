@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>1.1 Ubuntu 环境</title>
+    <link rel="stylesheet" href="/shared/css/main.css">
+    <script src="/shared/js/main.js" defer></script>
+</head>
+<body>
+
+<div w3-include-html="/shared/includes/header.html"></div>
+
+<main>
+    <div w3-include-html="/shared/includes/sidebar.html"></div>
+    <div class="content">
+        <h2>1.1 Ubuntu 环境</h2>
+        <p>在 Ubuntu 上安装 Python 的步骤如下：</p>
+        <ol>
+            <li>更新系统包：
+                <pre><code>sudo apt update && sudo apt upgrade -y</code></pre>
+            </li>
+            <li>安装 Python：
+                <pre><code>sudo apt install python3 python3-pip -y</code></pre>
+            </li>
+            <li>验证安装：
+                <pre><code>python3 --version
+pip3 --version</code></pre>
+            </li>
+        </ol>
+        <p>推荐使用 <strong>Virtualenv</strong> 创建独立的 Python 环境，避免依赖冲突。</p>
+    </div>
+</main>
+
+<div w3-include-html="/shared/includes/footer.html"></div>
+
+<script>
+    function includeHTML() {
+        const elements = document.querySelectorAll("[w3-include-html]");
+        elements.forEach(el => {
+            const file = el.getAttribute("w3-include-html");
+            if (file) {
+                fetch(file)
+                    .then(resp => resp.text())
+                    .then(data => {
+                        el.innerHTML = data;
+                        el.removeAttribute("w3-include-html");
+                        includeHTML();
+                    });
+            }
+        });
+    }
+    includeHTML();
+</script>
+
+</body>
+</html>

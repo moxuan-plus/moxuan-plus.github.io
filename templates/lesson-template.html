@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/shared/css/main.css">
+    <script src="/shared/js/main.js" defer></script>
+</head>
+<body>
+
+    <!-- 公共头部 -->
+    <div w3-include-html="/shared/includes/header.html"></div>
+
+    <main>
+        <!-- 公共侧边栏 -->
+        <div w3-include-html="/shared/includes/sidebar.html"></div>
+
+        <!-- 主内容 -->
+        <div class="content">
+            <h2>{{title}}</h2>
+            {{content}}
+        </div>
+    </main>
+
+    <!-- 公共底部 -->
+    <div w3-include-html="/shared/includes/footer.html"></div>
+
+    <script>
+        // 简单 HTML 片段引入功能
+        function includeHTML() {
+            const elements = document.querySelectorAll("[w3-include-html]");
+            elements.forEach(el => {
+                const file = el.getAttribute("w3-include-html");
+                if (file) {
+                    fetch(file)
+                        .then(resp => resp.text())
+                        .then(data => {
+                            el.innerHTML = data;
+                            el.removeAttribute("w3-include-html");
+                            includeHTML();
+                        });
+                }
+            });
+        }
+        includeHTML();
+    </script>
+</body>
+</html>
